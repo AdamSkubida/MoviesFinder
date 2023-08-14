@@ -1,26 +1,20 @@
-import { useEffect } from 'react';
+import React, { Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { lazy } from 'react';
+// import Home from 'pages/Home';
+// import Movie from 'pages/Movie';
+
+const Home = lazy(() => import('../pages/Home'));
+const Movie = lazy(() => import('../pages/Movie'));
 
 export const App = () => {
-  const apiKey = 'c6cec78029d9b3a5ee3a2d24ebcb1c0f';
-  const apiUrl = `https://api.themoviedb.org/3/movie/popular?api_key=${apiKey}`;
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const response = await fetch(apiUrl);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        console.log(data.results);
-        return data.results;
-      } catch (error) {
-        console.error('Wystąpił błąd:', error);
-        return [];
-      }
-    };
-    fetchMovies();
-  }, [apiUrl]);
-
-  return <div>LOL</div>;
+  return (
+    <div>
+      <Suspense fallback={<div>...Loading</div>}></Suspense>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movies/:movieId" element={<Movie />} />
+      </Routes>
+    </div>
+  );
 };
