@@ -4,10 +4,13 @@ img {
 
 .goBack {
   margin: 10px 10px 10px 20px;
-  background-color: aqua;
+  background-color: rgba(0, 255, 255, 0.171);
   width: 70px;
   height: 45px;
   cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
 }
 
 .wrapper {

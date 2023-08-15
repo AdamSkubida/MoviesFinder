@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { apiKey } from 'API key';
 import css from './Movies.module.css';
 
 const Movies = () => {
-  const MOVIE_LINK = 'https://image.tmdb.org/t/p/w500';
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
 
@@ -39,28 +39,25 @@ const Movies = () => {
   return (
     <div>
       <input
+        className={css.input}
         value={query}
         placeholder="Search movie"
         onChange={handleInput}
       ></input>
       <button onClick={handleButton}>Search</button>
-      <div className={css.wrapper}>
+      <ul className={css.wrapper}>
         {movies ? (
           movies.map(movie => {
             return (
-              <div key={movie.id}>
-                <img
-                  className={css.image}
-                  alt=""
-                  src={MOVIE_LINK + movie.poster_path}
-                />
-              </div>
+              <li key={movie.id}>
+                <Link to={`/movies/${movie.id}`}>{movie.title}</Link>
+              </li>
             );
           })
         ) : (
           <div>No results</div>
         )}
-      </div>
+      </ul>
     </div>
   );
 };
