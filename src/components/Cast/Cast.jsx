@@ -25,7 +25,7 @@ https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${apiKey}`);
     };
 
     fetchCast();
-  }, [cast]);
+  }, [cast, movieId]);
 
   return (
     <div>
