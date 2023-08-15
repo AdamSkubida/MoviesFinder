@@ -1,0 +1,10 @@
+.wrapper {
+  display: flex;
+  flex-basis: (100% - 60px) * 6;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.image {
+  width: 200px;
+}

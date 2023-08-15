@@ -1,0 +1,11 @@
+.navigation {
+  display: flex;
+  gap: 20px;
+  padding: 10px 10px 10px 20px;
+  background-color: rgba(0, 255, 255, 0.171);
+}
+
+.link {
+  font-size: 25px;
+  color: rgba(0, 0, 255, 0.5);
+}

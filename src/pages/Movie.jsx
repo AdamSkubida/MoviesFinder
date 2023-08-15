@@ -1,6 +1,7 @@
 import { apiKey } from 'API key';
 import { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, Outlet } from 'react-router-dom';
+import css from './Movie.module.css';
 
 const Movie = () => {
   const { movieId } = useParams();
@@ -30,13 +31,41 @@ const Movie = () => {
   return (
     <div>
       <nav>
-        <Link to="/">Go back</Link>
+        <Link to="/">
+          <button className={css.goBack}>Go back</button>
+        </Link>
       </nav>
       {movieDetails && (
-        <div>
-          <img alt="" src={MOVIE_LINK + movieDetails.poster_path} />
+        <div className={css.wrapper}>
+          <div>
+            <img alt="" src={MOVIE_LINK + movieDetails.poster_path} />
+          </div>
+          <div>
+            <h1>{movieDetails.title}</h1>
+            <p>
+              <span className={css.detailTitle}>Run Time:</span>{' '}
+              {movieDetails.runtime} min
+            </p>
+            <h2>Overview</h2>
+            <p>{movieDetails.overview}</p>
+            <h2>Genres</h2>
+            <p>
+              {movieDetails.genres.map(genre => {
+                return (
+                  <span key={genre.id} className={css.genres}>
+                    {genre.name}
+                  </span>
+                );
+              })}
+            </p>
+          </div>
         </div>
       )}
+      <div className={css.moreInfo}>
+        <Link to="cast">Cast</Link>
+        <Link to="reviews">Reviews</Link>
+      </div>
+      <Outlet />
     </div>
   );
 };
